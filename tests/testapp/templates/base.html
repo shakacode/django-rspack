@@ -1,0 +1,13 @@
+{% load rspack %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>django-rspack test app</title>
+    {% rspack_bundle_css "application" %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+    {% rspack_bundle_js "application" %}
+</body>
+</html>
