@@ -1,0 +1,57 @@
+# Default configuration for django-rspack
+# These values are used as defaults when not overridden by your project's
+# shakapacker.yml or Django settings.
+
+default: &default
+  source_path: app/javascript
+  source_entry_path: packs
+  nested_entries: true
+  public_root_path: public
+  public_output_path: packs
+  cache_path: tmp/rspack
+  compile_output: true
+  cache_manifest: false
+  additional_paths: []
+
+  integrity:
+    enabled: false
+    hash_functions:
+      - sha384
+    cross_origin: anonymous
+
+  dev_server:
+    host: localhost
+    port: 3035
+    server: http
+    hmr: false
+    inline_css: true
+    compress: true
+    allowed_hosts: auto
+    pretty: true
+
+development:
+  <<: *default
+  compile: true
+  compiler_strategy: mtime
+  useContentHash: false
+  dev_server:
+    host: localhost
+    port: 3035
+    server: http
+    hmr: false
+    inline_css: true
+    compress: true
+    allowed_hosts: auto
+    pretty: true
+
+test:
+  <<: *default
+  compile: true
+  public_output_path: packs-test
+
+production:
+  <<: *default
+  compile: false
+  cache_manifest: true
+  compiler_strategy: digest
+  useContentHash: true
